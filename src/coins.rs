@@ -434,12 +434,12 @@ pub fn min_coins_dynamic_programming(c: &mut Coins, target: usize) {
             if coin == change {
                 let mut tmp = base_change.clone(); tmp.inc(i);
                 match change_making_matrix.set(i + 1, change, tmp) {
-                    Err(e) => println!("{}", e),
+                    Err(e) => eprintln!("{}", e),
                     _ => (),
                 };
             } else if coin > change {
                 match change_making_matrix.set(i + 1, change, change_making_matrix.get(i, change).clone()) {
-                    Err(e) => println!("{}", e),
+                    Err(e) => eprintln!("{}", e),
                     _ => (),
                 };
             } else {
@@ -454,7 +454,7 @@ pub fn min_coins_dynamic_programming(c: &mut Coins, target: usize) {
                     },
                 };
                 if let Err(e) = change_making_matrix.set(i + 1, change, next_sol) {
-                    println!("{}", e);
+                    eprintln!("{}", e);
                 }
             }
         }
